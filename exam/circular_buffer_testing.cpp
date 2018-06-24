@@ -477,3 +477,13 @@ TEST(correctness, iterators_on_swap) {
     ASSERT_EQ(*it1, 1);
     ASSERT_EQ(*it2, 4);
 }
+
+TEST(correctness, wtf_queue) {
+    container c1({1, 2, 3, 4, 5});
+    for (int i = 6; i < 100; i++) {
+        c1.push_back(i);
+        c1.erase(c1.begin() + 1);
+    }
+
+    expect_eq(c1, {1, 96, 97, 98, 99});
+}

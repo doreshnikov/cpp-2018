@@ -171,7 +171,12 @@ public:
         return &(*left) == &(*right);
     };
 
-    circular_buffer() : circular_buffer(DEFAULT_SIZE) {};
+    circular_buffer() :
+        _size(0),
+        _capacity(0),
+        _data(nullptr),
+        _begin(nullptr),
+        _end(nullptr) {};
 
     explicit circular_buffer(size_t initial_capacity) :
         _size(0),
@@ -202,41 +207,56 @@ public:
             circular_buffer<T> tmp(other);
             swap(tmp);
         }
+        return *this;
     }
 
     ~circular_buffer() {
         while (_size) {
             pop_front();
         }
-        delete[] reinterpret_cast<char *>(_data);
+        if (_data != nullptr) {
+            delete[] reinterpret_cast<char *>(_data);
+        }
     }
 
-    bool push_front(T const &value) noexcept {
+    void push_front(T const &value) {
+        if (_data == nullptr) {
+            circular_buffer<T> starting(DEFAULT_CAPACITY);
+            swap(starting);
+        }
         _begin = prev(_begin);
         _size++;
-        new(_begin) T(value);
+        try {
+            new(_begin) T(value);
+        } catch (...) {
+            _size--;
+            _begin = next(_begin);
+            throw;
+        }
         if (_size == _capacity) {
             try {
                 enlarge();
-                return true;
             } catch (...) {
                 pop_front();
-                return false;
+                throw;
             }
         }
     }
 
-    bool push_back(T const &value) noexcept {
+    void push_back(T const &value) {
+        if (_data == nullptr) {
+            circular_buffer<T> starting(DEFAULT_CAPACITY);
+            swap(starting);
+        }
         new(_end) T(value);
         _size++;
         _end = next(_end);
         if (_size == _capacity) {
             try {
                 enlarge();
-                return true;
             } catch (...) {
                 pop_back();
-                return false;
+                throw;
             }
         }
     }
@@ -262,7 +282,7 @@ public:
     }
 
     iterator insert(const_iterator pos, T const &value) {
-        size_t index = pos._range_index;
+        size_t index = (pos._range_index + _capacity - (_begin - _data)) % _capacity;
         std::vector<T> tmp;
         if (index < _size / 2) {
             for (size_t i = 0; i < index; i++) {
@@ -293,7 +313,7 @@ public:
         if (pos == end()) {
             return end();
         }
-        size_t index = pos._range_index;
+        size_t index = (pos._range_index + _capacity - (_begin - _data)) % _capacity;
         std::vector<T> tmp;
         if (index < _size / 2) {
             for (size_t i = 0; i < index; i++) {
@@ -435,7 +455,7 @@ private:
         return ptr == _data ? _data + _capacity - 1 : ptr - 1;
     }
 
-    const static size_t DEFAULT_SIZE = 16;
+    const static size_t DEFAULT_CAPACITY = 16;
     size_t _capacity;
     size_t _size;
     T *_data;
