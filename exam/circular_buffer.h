@@ -22,16 +22,17 @@ private:
 
         friend class circular_buffer<T>;
 
-        typedef typename std::conditional<std::is_const<V>::value, circular_buffer<T> const, circular_buffer<T>>::type storage;
+        typedef typename std::conditional<std::is_const<V>::value, circular_buffer<T> const, circular_buffer<T>>::type
+            storage;
 
         buffer_iterator() :
-                _obj(nullptr),
-                _range_index(0) {}
+            _obj(nullptr),
+            _range_index(0) {}
 
         template<class W, class = typename std::enable_if<std::is_const<V>::value || !std::is_const<W>::value>::type>
         buffer_iterator(const buffer_iterator<W> &other) :
-                _obj(other._obj),
-                _range_index(other._range_index) {}
+            _obj(other._obj),
+            _range_index(other._range_index) {}
 
         template<class W, class = typename std::enable_if<std::is_const<V>::value || !std::is_const<W>::value>::type>
         buffer_iterator<V> &operator=(const buffer_iterator<W> &other) {
@@ -141,8 +142,8 @@ private:
     private:
 
         buffer_iterator(storage *obj, size_t index) :
-                _obj(obj),
-                _range_index(index) {};
+            _obj(obj),
+            _range_index(index) {};
 
         storage *_obj;
         size_t _range_index;
@@ -169,11 +170,11 @@ public:
     circular_buffer() : circular_buffer(DEFAULT_SIZE) {};
 
     explicit circular_buffer(size_t initial_capacity) :
-            _size(0),
-            _capacity(initial_capacity * 2),
-            _data(reinterpret_cast<T *>(new char[_capacity * sizeof(T)])),
-            _begin(_data),
-            _end(_begin) {}
+        _size(0),
+        _capacity(initial_capacity * 2),
+        _data(reinterpret_cast<T *>(new char[_capacity * sizeof(T)])),
+        _begin(_data),
+        _end(_begin) {}
 
     circular_buffer(size_t size, T const &fill) : circular_buffer(size) {
         _end = _begin + _size;
@@ -209,20 +210,30 @@ public:
     bool push_front(T const &value) noexcept {
         _begin = prev(_begin);
         _size++;
-        new(_begin) T(value);
-        if (_size == _capacity) {
-            try {
-                enlarge();
-                return true;
-            } catch (...) {
-                pop_front();
-                return false;
+        try {
+            new(_begin) T(value);
+            if (_size == _capacity) {
+                try {
+                    enlarge();
+                    return true;
+                } catch (...) {
+                    pop_front();
+                    return false;
+                }
             }
+        } catch (...) {
+            _begin = next(_begin);
+            _size--;
+            return false;
         }
     }
 
     bool push_back(T const &value) noexcept {
-        new(_end) T(value);
+        try {
+            new(_end) T(value);
+        } catch (...) {
+            return false;
+        }
         _size++;
         _end = next(_end);
         if (_size == _capacity) {
@@ -416,11 +427,11 @@ private:
     }
 
     circular_buffer(T *data, size_t size) :
-            _capacity(size * 2),
-            _size(size),
-            _data(data),
-            _begin(_data),
-            _end(_begin + size) {}
+        _capacity(size * 2),
+        _size(size),
+        _data(data),
+        _begin(_data),
+        _end(_begin + size) {}
 
     T *next(T *ptr) const noexcept {
         return ptr == _data + _capacity - 1 ? _data : ptr + 1;
