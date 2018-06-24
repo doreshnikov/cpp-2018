@@ -22,28 +22,30 @@ private:
 
         friend class circular_buffer<T>;
 
-        typedef typename std::conditional<std::is_const<V>::value, circular_buffer<T> const, circular_buffer<T>>::type
-            storage;
+        typedef typename std::conditional<std::is_const<V>::value, T const, T>::type T_data;
 
         buffer_iterator() :
-            _obj(nullptr),
+            _where(nullptr),
+            _capacity(0),
             _range_index(0) {}
 
         template<class W, class = typename std::enable_if<std::is_const<V>::value || !std::is_const<W>::value>::type>
         buffer_iterator(const buffer_iterator<W> &other) :
-            _obj(other._obj),
+            _where(other._where),
+            _capacity(other._capacity),
             _range_index(other._range_index) {}
 
         template<class W, class = typename std::enable_if<std::is_const<V>::value || !std::is_const<W>::value>::type>
         buffer_iterator<V> &operator=(const buffer_iterator<W> &other) {
-            _obj = other._obj;
+            _where = other._where;
+            _capacity = other._capacity;
             _range_index = other._range_index;
             return *this;
         }
 
         template<class W>
         int operator-(const buffer_iterator<W> &other) const {
-            if (_obj != other._obj) {
+            if (_where != other._where) {
                 throw std::runtime_error("Subtraction of different object iterators");
             }
             return static_cast<int>(_range_index) - static_cast<int>(other._range_index);
@@ -53,10 +55,7 @@ private:
             if (index < 0) {
                 return *this + (-index);
             }
-            if (index > _range_index) {
-                throw std::runtime_error("Out-of-bounds iterator arithmetics subtracting");
-            }
-            return buffer_iterator(_obj, _range_index - index);
+            return buffer_iterator(_where, _capacity, (_range_index - index + _capacity) % _capacity);
         }
 
         buffer_iterator<V> &operator-=(int index) {
@@ -67,10 +66,7 @@ private:
             if (index < 0) {
                 return *this - (-index);
             }
-            if (index + _range_index > _obj->size()) {
-                throw std::runtime_error("Out-of-bounds iterator arithmetics");
-            }
-            return buffer_iterator(_obj, _range_index + index);
+            return buffer_iterator(_where, _capacity, (_range_index + index) % _capacity);
         }
 
         buffer_iterator<V> &operator+=(int index) {
@@ -103,49 +99,51 @@ private:
 
         template<class W>
         bool operator==(buffer_iterator<W> const &other) const {
-            return _obj == other._obj && _range_index == other._range_index;
+            return _where == other._where && _range_index == other._range_index;
         }
 
         template<class W>
         bool operator!=(buffer_iterator<W> const &other) const {
-            return _obj == other._obj && _range_index != other._range_index;
+            return _where == other._where && _range_index != other._range_index;
         }
 
         template<class W>
         bool operator<(buffer_iterator<W> const &other) const {
-            return _obj == other._obj && _range_index < other._range_index;
+            return _where == other._where && _range_index < other._range_index;
         }
 
         template<class W>
         bool operator<=(buffer_iterator<W> const &other) const {
-            return _obj == other._obj && _range_index <= other._range_index;
+            return _where == other._where && _range_index <= other._range_index;
         }
 
         template<class W>
         bool operator>(buffer_iterator<W> const &other) const {
-            return _obj == other._obj && _range_index > other._range_index;
+            return _where == other._where && _range_index > other._range_index;
         }
 
         template<class W>
         bool operator>=(buffer_iterator<W> const &other) const {
-            return _obj == other._obj && _range_index >= other._range_index;
+            return _where == other._where && _range_index >= other._range_index;
         }
 
         V &operator*() const {
-            return (*_obj)[_range_index];
+            return _where[_range_index];
         }
 
         V &operator->() const {
-            return (*_obj)[_range_index];
+            return _where[_range_index];
         }
 
     private:
 
-        buffer_iterator(storage *obj, size_t index) :
-            _obj(obj),
+        buffer_iterator(circular_buffer<T> const &obj, size_t index) :
+            _where(obj._data),
+            _capacity(obj._capacity),
             _range_index(index) {};
 
-        storage *_obj;
+        T_data *_where;
+        size_t _capacity;
         size_t _range_index;
 
     };
@@ -156,6 +154,7 @@ public:
     friend bool operator==(buffer_iterator<V> const &left, std::reverse_iterator<buffer_iterator<W>> const &right) {
         return &(*left) == &(*right);
     };
+
     typedef buffer_iterator<T> iterator;
     typedef buffer_iterator<T const> const_iterator;
     typedef std::reverse_iterator<iterator> reverse_iterator;
@@ -210,30 +209,20 @@ public:
     bool push_front(T const &value) noexcept {
         _begin = prev(_begin);
         _size++;
-        try {
-            new(_begin) T(value);
-            if (_size == _capacity) {
-                try {
-                    enlarge();
-                    return true;
-                } catch (...) {
-                    pop_front();
-                    return false;
-                }
+        new(_begin) T(value);
+        if (_size == _capacity) {
+            try {
+                enlarge();
+                return true;
+            } catch (...) {
+                pop_front();
+                return false;
             }
-        } catch (...) {
-            _begin = next(_begin);
-            _size--;
-            return false;
         }
     }
 
     bool push_back(T const &value) noexcept {
-        try {
-            new(_end) T(value);
-        } catch (...) {
-            return false;
-        }
+        new(_end) T(value);
         _size++;
         _end = next(_end);
         if (_size == _capacity) {

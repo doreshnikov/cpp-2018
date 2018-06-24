@@ -12,7 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4b4bf88-d625-4b06-8fd6-444d231441a0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/exam/circular_buffer_testing.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/exam/circular_buffer_testing.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exam/circular_buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/exam/circular_buffer.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,22 +29,13 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="91" selection-start-line="6" selection-start-column="91" selection-end-line="6" selection-end-column="91" />
+            <state relative-caret-position="85">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/exam/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="circular_buffer_testing.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="circular_buffer_testing.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/exam/circular_buffer_testing.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="277">
@@ -61,14 +53,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="circular_buffer.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="circular_buffer.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/exam/circular_buffer.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="403" column="21" selection-start-line="403" selection-start-column="21" selection-end-line="403" selection-end-column="21" />
+            <state relative-caret-position="153">
+              <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
               <folding>
                 <element signature="e#101#123#0" expanded="true" />
+                <element signature="e#208#217#0" expanded="true" />
                 <element signature="e#265#274#0" expanded="true" />
+                <element signature="e#615#716#0" expanded="true" />
+                <element signature="e#871#972#0" expanded="true" />
+                <element signature="e#1177#1186#0" expanded="true" />
+                <element signature="e#3006#3015#0" expanded="true" />
+                <element signature="e#3185#3194#0" expanded="true" />
+                <element signature="e#3364#3373#0" expanded="true" />
+                <element signature="e#3541#3550#0" expanded="true" />
+                <element signature="e#3720#3729#0" expanded="true" />
+                <element signature="e#3897#3906#0" expanded="true" />
+                <element signature="e#4439#4457#0" expanded="true" />
+                <element signature="e#4865#4883#0" expanded="true" />
+                <element signature="e#10830#10839#0" expanded="true" />
+                <element signature="e#12003#12012#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -127,9 +133,9 @@
         <option value="$PROJECT_DIR$/hw/huffman/lib/decoder.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/exam/circular_buffer.cpp" />
-        <option value="$PROJECT_DIR$/exam/circular_buffer.h" />
         <option value="$PROJECT_DIR$/exam/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/exam/circular_buffer_testing.cpp" />
+        <option value="$PROJECT_DIR$/exam/circular_buffer.h" />
       </list>
     </option>
   </component>
@@ -159,11 +165,6 @@
             <path>
               <item name="cpp" type="b2602c69:ProjectViewProjectNode" />
               <item name="cpp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cpp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cpp" type="462c0819:PsiDirectoryNode" />
-              <item name="exam" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -326,7 +327,7 @@
       <updated>1527925313600</updated>
       <workItem from="1527925315366" duration="13107000" />
       <workItem from="1529065259410" duration="13000" />
-      <workItem from="1529748598348" duration="31590000" />
+      <workItem from="1529748598348" duration="33447000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes for bigint">
       <created>1527925601635</created>
@@ -377,11 +378,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529834280306</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Strong guarantee modified">
+      <created>1529847510024</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1529847510024</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44710000" />
+    <option name="totallyTimeSpent" value="46567000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -392,10 +400,10 @@
       <window_info anchor="bottom" id="Messages" order="11" weight="0.51386863" />
       <window_info anchor="bottom" id="CMake" order="0" weight="0.329927" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.329927" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.329927" />
       <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.329927" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.329927" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4978102" />
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
@@ -422,7 +430,8 @@
     <MESSAGE value="`circular_buffer` (maybe) finished&#10;test created" />
     <MESSAGE value="Some tests added" />
     <MESSAGE value="Modified" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified" />
+    <MESSAGE value="Strong guarantee modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="Strong guarantee modified" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -737,28 +746,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="91" selection-start-line="6" selection-start-column="91" selection-end-line="6" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/exam/circular_buffer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="403" column="21" selection-start-line="403" selection-start-column="21" selection-end-line="403" selection-end-column="21" />
-          <folding>
-            <element signature="e#101#123#0" expanded="true" />
-            <element signature="e#265#274#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/exam/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -774,6 +772,31 @@
             <element signature="e#905#930#0" expanded="true" />
             <element signature="e#1244#1268#0" expanded="true" />
             <element signature="e#1383#1407#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exam/circular_buffer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+          <folding>
+            <element signature="e#101#123#0" expanded="true" />
+            <element signature="e#208#217#0" expanded="true" />
+            <element signature="e#265#274#0" expanded="true" />
+            <element signature="e#615#716#0" expanded="true" />
+            <element signature="e#871#972#0" expanded="true" />
+            <element signature="e#1177#1186#0" expanded="true" />
+            <element signature="e#3006#3015#0" expanded="true" />
+            <element signature="e#3185#3194#0" expanded="true" />
+            <element signature="e#3364#3373#0" expanded="true" />
+            <element signature="e#3541#3550#0" expanded="true" />
+            <element signature="e#3720#3729#0" expanded="true" />
+            <element signature="e#3897#3906#0" expanded="true" />
+            <element signature="e#4439#4457#0" expanded="true" />
+            <element signature="e#4865#4883#0" expanded="true" />
+            <element signature="e#10830#10839#0" expanded="true" />
+            <element signature="e#12003#12012#0" expanded="true" />
           </folding>
         </state>
       </provider>
