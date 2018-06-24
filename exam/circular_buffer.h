@@ -142,6 +142,11 @@ private:
             _capacity(obj._capacity),
             _range_index(index) {};
 
+        buffer_iterator(T_data *where, size_t capacity, size_t range_index) :
+            _where(where),
+            _capacity(capacity),
+            _range_index(range_index) {};
+
         T_data *_where;
         size_t _capacity;
         size_t _range_index;
@@ -281,7 +286,7 @@ public:
             }
         }
 
-        return iterator(this, index);
+        return iterator(*this, ((_begin - _data) + index) % _capacity);
     }
 
     iterator erase(const_iterator pos) {
@@ -312,7 +317,7 @@ public:
             }
         }
 
-        return iterator(this, index);
+        return iterator(*this, ((_begin - _data) + index) % _capacity);
     }
 
     T const &front() const noexcept {
@@ -355,19 +360,19 @@ public:
     }
 
     iterator begin() noexcept {
-        return iterator(this, 0);
+        return iterator(*this, _begin - _data);
     }
 
     const_iterator begin() const noexcept {
-        return const_iterator(this, 0);
+        return const_iterator(*this, _begin - _data);
     }
 
     iterator end() noexcept {
-        return iterator(this, _size);
+        return iterator(*this, _end - _data);
     }
 
     const_iterator end() const noexcept {
-        return const_iterator(this, _size);
+        return const_iterator(*this, _end - _data);
     }
 
     reverse_iterator rbegin() noexcept {

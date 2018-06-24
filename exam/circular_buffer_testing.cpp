@@ -468,3 +468,12 @@ TEST(correctness, different_iterators) {
     EXPECT_EQ(c.begin(), std::prev(c.rend()));
     EXPECT_EQ(std::prev(c.end()), c.rbegin());
 }
+
+TEST(correctness, iterators_on_swap) {
+    container c1({1, 2, 3});
+    container c2({4, 5, 6});
+    auto it1 = c1.begin(), it2 = c2.begin();
+    swap(c1, c2);
+    ASSERT_EQ(*it1, 1);
+    ASSERT_EQ(*it2, 4);
+}
