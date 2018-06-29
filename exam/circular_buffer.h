@@ -22,8 +22,6 @@ private:
 
         friend class circular_buffer<T>;
 
-        typedef typename std::conditional<std::is_const<V>::value, T const, T>::type T_data;
-
         buffer_iterator() :
             _where(nullptr),
             _capacity(0),
@@ -44,6 +42,7 @@ private:
         }
 
         template<class W>
+        // int to ptrdiff_t
         int operator-(const buffer_iterator<W> &other) const {
             if (_where != other._where) {
                 throw std::runtime_error("Subtraction of different object iterators");
@@ -108,6 +107,7 @@ private:
         }
 
         template<class W>
+        // tut govno
         bool operator<(buffer_iterator<W> const &other) const {
             return _where == other._where && _range_index < other._range_index;
         }
@@ -131,8 +131,8 @@ private:
             return _where[_range_index];
         }
 
-        V &operator->() const {
-            return _where[_range_index];
+        V *operator->() const {
+            return _where + _range_index;
         }
 
     private:
@@ -142,12 +142,12 @@ private:
             _capacity(obj._capacity),
             _range_index(index) {};
 
-        buffer_iterator(T_data *where, size_t capacity, size_t range_index) :
+        buffer_iterator(V *where, size_t capacity, size_t range_index) :
             _where(where),
             _capacity(capacity),
             _range_index(range_index) {};
 
-        T_data *_where;
+        V *_where;
         size_t _capacity;
         size_t _range_index;
 
@@ -160,20 +160,19 @@ public:
         return &(*left) == &(*right);
     };
 
-    typedef buffer_iterator<T> iterator;
-    typedef buffer_iterator<T const> const_iterator;
-    typedef std::reverse_iterator<iterator> reverse_iterator;
-
-    typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
-
     template<class V, class W>
     friend bool operator==(std::reverse_iterator<buffer_iterator<W>> const &left, buffer_iterator<V> const &right) {
         return &(*left) == &(*right);
     };
 
+    typedef buffer_iterator<T> iterator;
+    typedef buffer_iterator<T const> const_iterator;
+    typedef std::reverse_iterator<iterator> reverse_iterator;
+    typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+
     circular_buffer() :
         _size(0),
-        _capacity(0),
+        _capacity(1),
         _data(nullptr),
         _begin(nullptr),
         _end(nullptr) {};
@@ -197,9 +196,7 @@ public:
     }
 
     circular_buffer(circular_buffer<T> const &other) : circular_buffer(other._size) {
-        for (T const &it : other) {
-            push_back(it);
-        }
+        std::copy(other.begin(), other.end(), begin());
     }
 
     circular_buffer<T> &operator=(circular_buffer<T> const &other) {
@@ -282,7 +279,11 @@ public:
     }
 
     iterator insert(const_iterator pos, T const &value) {
-        size_t index = (pos._range_index + _capacity - (_begin - _data)) % _capacity;
+        if (_data == nullptr) {
+            circular_buffer<T> starting(DEFAULT_CAPACITY);
+            swap(starting);
+        }
+        size_t index = index_of(pos);
         std::vector<T> tmp;
         if (index < _size / 2) {
             for (size_t i = 0; i < index; i++) {
@@ -306,14 +307,14 @@ public:
             }
         }
 
-        return iterator(*this, ((_begin - _data) + index) % _capacity);
+        return at<T>(index);
     }
 
     iterator erase(const_iterator pos) {
         if (pos == end()) {
             return end();
         }
-        size_t index = (pos._range_index + _capacity - (_begin - _data)) % _capacity;
+        size_t index = index_of(pos);
         std::vector<T> tmp;
         if (index < _size / 2) {
             for (size_t i = 0; i < index; i++) {
@@ -337,7 +338,7 @@ public:
             }
         }
 
-        return iterator(*this, ((_begin - _data) + index) % _capacity);
+        return at<T>(index);
     }
 
     T const &front() const noexcept {
@@ -356,13 +357,13 @@ public:
         return operator[](size() - 1);
     }
 
-    T const &operator[](size_t index) const {
-        size_t where = (index + (_begin - _data)) % _capacity;
-        return const_cast<T const &>(_data[where]);
+    T const &operator[](size_t index) const noexcept {
+        size_t where = (index + begin_pos()) % _capacity;
+        return _data[where];
     }
 
-    T &operator[](size_t index) {
-        size_t where = (index + (_begin - _data)) % _capacity;
+    T &operator[](size_t index) noexcept {
+        size_t where = (index + begin_pos()) % _capacity;
         return _data[where];
     }
 
@@ -380,19 +381,19 @@ public:
     }
 
     iterator begin() noexcept {
-        return iterator(*this, _begin - _data);
+        return at<T>(0);
     }
 
     const_iterator begin() const noexcept {
-        return const_iterator(*this, _begin - _data);
+        return at<const T>(0);
     }
 
     iterator end() noexcept {
-        return iterator(*this, _end - _data);
+        return at<T>(_size);
     }
 
     const_iterator end() const noexcept {
-        return const_iterator(*this, _end - _data);
+        return at<const T>(_size);
     }
 
     reverse_iterator rbegin() noexcept {
@@ -421,9 +422,8 @@ private:
 
     void enlarge() {
         auto data = reinterpret_cast<T *>(new char[_capacity * 2 * sizeof(T)]);
-        size_t i = 0;
-        for (auto t = begin(); t < end(); t++) {
-            new(data + (i++)) T(*t);
+        for (size_t i = 0; i < _size; i++) {
+            new(data + i) T(operator[](i));
         }
         circular_buffer create(data, _capacity);
         swap(create);
@@ -455,7 +455,26 @@ private:
         return ptr == _data ? _data + _capacity - 1 : ptr - 1;
     }
 
-    const static size_t DEFAULT_CAPACITY = 16;
+    size_t begin_pos() const {
+        return _data == nullptr ? 0 : _begin - _data;
+    }
+
+    size_t end_pos() const {
+        return _data == nullptr ? 0 : _end - _data;
+    }
+
+    template<class V>
+    buffer_iterator<V> at(size_t index) const {
+        return buffer_iterator<V>(*this, (begin_pos() + index) % _capacity);
+    }
+
+    template<class V>
+    size_t index_of(buffer_iterator<V> const &pos) const {
+        return (pos._range_index + _capacity - begin_pos()) % _capacity;
+    }
+
+    const static size_t
+        DEFAULT_CAPACITY = 16;
     size_t _capacity;
     size_t _size;
     T *_data;

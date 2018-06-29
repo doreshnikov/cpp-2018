@@ -474,8 +474,13 @@ TEST(correctness, iterators_on_swap) {
     container c2({4, 5, 6});
     auto it1 = c1.begin(), it2 = c2.begin();
     swap(c1, c2);
-    ASSERT_EQ(*it1, 1);
-    ASSERT_EQ(*it2, 4);
+    EXPECT_EQ(*it1, 1);
+    EXPECT_EQ(*it2, 4);
+
+    it1++;
+    it2++;
+    EXPECT_EQ(*it1, 2);
+    EXPECT_EQ(*it2, 5);
 }
 
 TEST(correctness, wtf_queue) {
@@ -487,3 +492,21 @@ TEST(correctness, wtf_queue) {
 
     expect_eq(c1, {1, 96, 97, 98, 99});
 }
+
+TEST(correctness, empty_swap) {
+    container c1;
+    container c2;
+    container c3(1);
+    swap(c1, c3);
+    swap(c2, c3);
+    EXPECT_EQ(c2.size(), 0);
+    EXPECT_EQ(c3.size(), 0);
+
+    c1.push_back(1);
+    c1.push_front(1);
+    c2.push_back(1);
+    c2.push_front(1);
+    c3.push_back(1);
+    c3.push_front(1);
+}
+
