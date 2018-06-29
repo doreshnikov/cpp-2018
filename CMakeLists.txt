@@ -8,6 +8,8 @@ if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
 endif ()
 
+add_library(gtest gtest/gtest.h gtest/gtest-all.cc gtest/gtest_main.cc)
+
 #add_subdirectory(hw/bigint)
 #add_subdirectory(hw/bigint-optimized)
 #add_subdirectory(hw/huffman)

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
+      <config projectName="cpp" targetName="std" />
       <config projectName="cpp" targetName="circular_buffer_testing" />
+      <config projectName="cpp" targetName="gtest" />
+      <config projectName="cpp" targetName="counted" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -12,9 +15,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4b4bf88-d625-4b06-8fd6-444d231441a0" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/exam/std.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/tests.inl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exam/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/exam/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exam/circular_buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/exam/circular_buffer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exam/circular_buffer_testing.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/exam/circular_buffer_testing.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exam/counted.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/exam/counted.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exam/counted.h" beforeDir="false" afterPath="$PROJECT_DIR$/exam/counted.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exam/fault_injection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/exam/fault_injection.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exam/fault_injection.h" beforeDir="false" afterPath="$PROJECT_DIR$/exam/fault_injection.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw/bigint-optimized/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hw/bigint-optimized/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw/bigint/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hw/bigint/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw/gtest/gtest-all.cc" beforeDir="false" afterPath="$PROJECT_DIR$/gtest/gtest-all.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw/gtest/gtest.h" beforeDir="false" afterPath="$PROJECT_DIR$/gtest/gtest.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw/gtest/gtest_main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/gtest/gtest_main.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw/huffman/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hw/huffman/CMakeLists.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,39 +47,28 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
+            <state relative-caret-position="216">
+              <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="circular_buffer_testing.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/exam/circular_buffer_testing.cpp">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/exam/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8177">
-              <caret line="481" selection-start-line="481" selection-end-line="481" />
-              <folding>
-                <element signature="e#316#329#0" expanded="true" />
-                <element signature="e#531#543#0" expanded="true" />
-                <element signature="e#605#629#0" expanded="true" />
-                <element signature="e#754#778#0" expanded="true" />
-                <element signature="e#905#930#0" expanded="true" />
-                <element signature="e#1244#1268#0" expanded="true" />
-                <element signature="e#1383#1407#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="108">
+              <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="circular_buffer.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/exam/circular_buffer.h">
+      <file leaf-file-name="std.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/exam/std.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1202">
-              <caret line="389" lean-forward="true" selection-start-line="389" selection-end-line="389" />
+            <state relative-caret-position="126">
+              <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
               <folding>
-                <element signature="e#101#123#0" expanded="true" />
-                <element signature="e#208#217#0" expanded="true" />
-                <element signature="e#265#274#0" expanded="true" />
+                <element signature="e#25#45#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,10 +130,19 @@
         <option value="$PROJECT_DIR$/hw/huffman/lib/encoder.cpp" />
         <option value="$PROJECT_DIR$/hw/huffman/lib/decoder.h" />
         <option value="$PROJECT_DIR$/exam/circular_buffer.cpp" />
-        <option value="$PROJECT_DIR$/exam/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/exam/circular_buffer_testing.cpp" />
+        <option value="$PROJECT_DIR$/exam/counted.h" />
+        <option value="$PROJECT_DIR$/exam/fault_injection.cpp" />
+        <option value="$PROJECT_DIR$/exam/fault_injection.h" />
         <option value="$PROJECT_DIR$/exam/circular_buffer.h" />
+        <option value="$PROJECT_DIR$/exam/std.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/exam/counted.cpp" />
+        <option value="$PROJECT_DIR$/hw/bigint/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/hw/bigint-optimized/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/hw/huffman/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/exam/circular_buffer_testing.cpp" />
+        <option value="$PROJECT_DIR$/exam/tests.inl" />
+        <option value="$PROJECT_DIR$/exam/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -151,18 +166,51 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="cpp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cpp" type="462c0819:PsiDirectoryNode" />
+              <item name="cpp-2018" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cpp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cpp-2018" type="462c0819:PsiDirectoryNode" />
+              <item name="exam" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cpp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cpp-2018" type="462c0819:PsiDirectoryNode" />
+              <item name="hw" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cpp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cpp-2018" type="462c0819:PsiDirectoryNode" />
+              <item name="hw" type="462c0819:PsiDirectoryNode" />
+              <item name="bigint" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cpp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cpp-2018" type="462c0819:PsiDirectoryNode" />
+              <item name="hw" type="462c0819:PsiDirectoryNode" />
+              <item name="bigint-optimized" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cpp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cpp-2018" type="462c0819:PsiDirectoryNode" />
+              <item name="hw" type="462c0819:PsiDirectoryNode" />
+              <item name="huffman" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cpp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cpp-2018" type="462c0819:PsiDirectoryNode" />
+              <item name="lab" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -172,6 +220,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="C:\Users\isuca\projects\2 semester\cpp" />
       <recent name="C:\Users\isuca\projects\2 semester\cpp\hw\huffman\tool" />
     </key>
@@ -190,10 +239,16 @@
   </component>
   <component name="RunManager" selected="Application.circular_buffer_testing">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cpp" RUN_TARGET_NAME="circular_buffer" EXPLICIT_BUILD_TARGET_NAME="all" />
-    <configuration name="circular_buffer_testing" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cpp" TARGET_NAME="circular_buffer_testing" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cpp" RUN_TARGET_NAME="circular_buffer_testing" />
+    <configuration name="circular_buffer_testing" type="CMakeRunConfiguration" factoryName="Application" singleton="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cpp" TARGET_NAME="circular_buffer_testing" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cpp" RUN_TARGET_NAME="circular_buffer_testing" />
+    <configuration name="counted" type="CMakeRunConfiguration" factoryName="Application" singleton="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cpp" TARGET_NAME="counted" CONFIG_NAME="Debug" />
+    <configuration name="gtest" type="CMakeRunConfiguration" factoryName="Application" singleton="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cpp" TARGET_NAME="gtest" CONFIG_NAME="Debug" />
+    <configuration name="std" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cpp" TARGET_NAME="std" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cpp" RUN_TARGET_NAME="std" />
     <list>
       <item itemvalue="Application.Build All" />
+      <item itemvalue="Application.gtest" />
       <item itemvalue="Application.circular_buffer_testing" />
+      <item itemvalue="Application.counted" />
+      <item itemvalue="Application.std" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -210,6 +265,7 @@
       <workItem from="1529065259410" duration="13000" />
       <workItem from="1529748598348" duration="40486000" />
       <workItem from="1530196161897" duration="1196000" />
+      <workItem from="1530286248571" duration="1504000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes for bigint">
       <created>1527925601635</created>
@@ -292,31 +348,31 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54802000" />
+    <option name="totallyTimeSpent" value="56306000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.25512227" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.25491267" />
       <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="bottom" id="CMake" order="0" weight="0.329927" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.51293105" />
+      <window_info anchor="bottom" id="CMake" order="0" weight="0.3297414" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="2" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.329927" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.3297414" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.329927" />
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4978102" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="right" id="Data View" order="0" />
       <window_info anchor="right" id="Commander" order="1" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="5" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.51386863" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="0" />
       <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="5" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,50 +454,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/exam/circular_buffer_testing.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8177">
-          <caret line="481" selection-start-line="481" selection-end-line="481" />
-          <folding>
-            <element signature="e#316#329#0" expanded="true" />
-            <element signature="e#531#543#0" expanded="true" />
-            <element signature="e#605#629#0" expanded="true" />
-            <element signature="e#754#778#0" expanded="true" />
-            <element signature="e#905#930#0" expanded="true" />
-            <element signature="e#1244#1268#0" expanded="true" />
-            <element signature="e#1383#1407#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/exam/circular_buffer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3213">
-          <caret line="189" column="5" lean-forward="true" selection-end-line="491" />
-          <folding>
-            <element signature="e#101#123#0" expanded="true" />
-            <element signature="e#208#217#0" expanded="true" />
-            <element signature="e#265#274#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw/huffman/lib/encoder.cpp" />
-    <entry file="file://$PROJECT_DIR$/hw/huffman/lib/decoder.h" />
     <entry file="file://$PROJECT_DIR$/hw/huffman/lib/decoder.cpp" />
     <entry file="file://$PROJECT_DIR$/hw/huffman/lib/encoder.h" />
     <entry file="file://$PROJECT_DIR$/hw/huffman/lib/code.h">
@@ -483,13 +495,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/debug/formatter.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="406" column="4" selection-start-line="406" selection-start-column="4" selection-end-line="406" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/debug/formatter.h" />
     <entry file="file://$PROJECT_DIR$/gtest/gtest.h" />
     <entry file="file://$PROJECT_DIR$/lab/lab-01.cpp">
       <provider selected="true" editor-type-id="text-editor">
@@ -503,13 +509,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/istream">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="268" column="6" selection-start-line="268" selection-start-column="6" selection-end-line="268" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/istream" />
     <entry file="file://$PROJECT_DIR$/hw/huffman/tool/reader.h" />
     <entry file="file://$PROJECT_DIR$/hw/huffman/tool/reader.cpp" />
     <entry file="file://$PROJECT_DIR$/hw/huffman/tool/writer.cpp" />
@@ -517,21 +517,9 @@
     <entry file="file://$PROJECT_DIR$/hw/huffman/lib/stats.cpp" />
     <entry file="file://$PROJECT_DIR$/hw/huffman/lib/builder.h" />
     <entry file="file://$PROJECT_DIR$/hw/huffman/lib/stats.h" />
-    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/iosfwd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="81" column="2" lean-forward="true" selection-start-line="81" selection-start-column="2" selection-end-line="81" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/iosfwd" />
     <entry file="file://$PROJECT_DIR$/hw/huffman/lib/literals.h" />
-    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/bits/istream.tcc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="235" column="4" selection-start-line="235" selection-start-column="4" selection-end-line="235" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/bits/istream.tcc" />
     <entry file="file://$PROJECT_DIR$/hw/huffman/lib/code.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -550,97 +538,123 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hw/bigint-optimized/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/bits/unique_ptr.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="115" column="10" selection-start-line="115" selection-start-column="10" selection-end-line="115" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/bits/stl_function.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="385" selection-start-line="385" selection-end-line="385" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/bits/stl_iterator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="112" column="52" selection-start-line="112" selection-start-column="52" selection-end-line="112" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/bits/stl_iterator_base_types.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="117" selection-start-line="117" selection-end-line="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw/bigint/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hw/gtest/gtest.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="2825" column="24" selection-start-line="2825" selection-start-column="24" selection-end-line="2825" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/bits/unique_ptr.h" />
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/bits/stl_function.h" />
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/bits/stl_iterator.h" />
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/bits/stl_iterator_base_types.h" />
     <entry file="file://$PROJECT_DIR$/exam/circular_buffer.cpp" />
-    <entry file="file://$PROJECT_DIR$/exam/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/exam/counted.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        <state relative-caret-position="756">
+          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exam/fault_injection.cpp">
+    <entry file="file://$PROJECT_DIR$/exam/fault_injection.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/exam/circular_buffer_testing.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8177">
-          <caret line="481" selection-start-line="481" selection-end-line="481" />
+        <state relative-caret-position="144">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
           <folding>
-            <element signature="e#316#329#0" expanded="true" />
-            <element signature="e#531#543#0" expanded="true" />
-            <element signature="e#605#629#0" expanded="true" />
-            <element signature="e#754#778#0" expanded="true" />
-            <element signature="e#905#930#0" expanded="true" />
-            <element signature="e#1244#1268#0" expanded="true" />
-            <element signature="e#1383#1407#0" expanded="true" />
+            <element signature="e#14#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/exam/circular_buffer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1202">
-          <caret line="389" lean-forward="true" selection-start-line="389" selection-end-line="389" />
+        <state relative-caret-position="5490">
+          <caret line="387" selection-start-line="387" selection-end-line="387" />
           <folding>
             <element signature="e#101#123#0" expanded="true" />
             <element signature="e#208#217#0" expanded="true" />
             <element signature="e#265#274#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hw/huffman/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hw/bigint-optimized/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hw/bigint/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gtest/gtest.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="2588" selection-start-line="2588" selection-end-line="2588" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exam/counted.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="27" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exam/fault_injection.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exam/circular_buffer_testing.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="28" lean-forward="true" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+          <folding>
+            <element signature="e#26#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exam/tests.inl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="818" column="13" selection-start-line="818" selection-start-column="13" selection-end-line="818" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#71#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exam/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exam/std.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+          <folding>
+            <element signature="e#25#45#0" expanded="true" />
           </folding>
         </state>
       </provider>

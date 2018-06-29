@@ -5,25 +5,21 @@
 
 #include <sys/mman.h>
 
-namespace
-{
-    template <typename T>
-    struct mmap_allocator
-    {
+namespace {
+    template<typename T>
+    struct mmap_allocator {
         using value_type = T;
 
         mmap_allocator() = default;
 
-        T* allocate(size_t n)
-        {
-            void* ptr = mmap(nullptr, n, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_POPULATE, -1, 0);
+        T *allocate(size_t n) {
+            void *ptr = mmap(nullptr, n, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_POPULATE, -1, 0);
             if (ptr == MAP_FAILED)
                 throw std::bad_alloc();
-            return reinterpret_cast<T*>(ptr);
+            return reinterpret_cast<T *>(ptr);
         }
 
-        void deallocate(void* p, std::size_t n)
-        {
+        void deallocate(void *p, std::size_t n) {
             int r = munmap(p, n);
             if (r != 0)
                 std::abort();
@@ -31,8 +27,7 @@ namespace
 
     };
 
-    struct fault_injection_context
-    {
+    struct fault_injection_context {
         std::vector<size_t, mmap_allocator<size_t> > skip_ranges;
         size_t error_index = 0;
         size_t skip_index = 0;
@@ -40,10 +35,9 @@ namespace
     };
 
     thread_local bool disabled = false;
-    thread_local fault_injection_context* context = nullptr;
+    thread_local fault_injection_context *context = nullptr;
 
-    void dump_state()
-    {
+    void dump_state() {
 #if 0
         std::cout << "skip_ranges: {";
         if (!context->skip_ranges.empty())
@@ -57,8 +51,7 @@ namespace
     }
 }
 
-bool should_inject_fault()
-{
+bool should_inject_fault() {
     if (!context)
         return false;
 
@@ -66,8 +59,7 @@ bool should_inject_fault()
         return false;
 
     assert(context->error_index <= context->skip_ranges.size());
-    if (context->error_index == context->skip_ranges.size())
-    {
+    if (context->error_index == context->skip_ranges.size()) {
         ++context->error_index;
         context->skip_ranges.push_back(0);
         context->fault_registred = true;
@@ -76,8 +68,7 @@ bool should_inject_fault()
 
     assert(context->skip_index <= context->skip_ranges[context->error_index]);
 
-    if (context->skip_index == context->skip_ranges[context->error_index])
-    {
+    if (context->skip_index == context->skip_ranges[context->error_index]) {
         ++context->error_index;
         context->skip_index = 0;
         context->fault_registred = true;
@@ -88,25 +79,20 @@ bool should_inject_fault()
     return false;
 }
 
-void fault_injection_point()
-{
+void fault_injection_point() {
     if (should_inject_fault())
         throw injected_fault("injected fault");
 }
 
-void faulty_run(std::function<void ()> const& f)
-{
+void faulty_run(std::function<void()> const &f) {
     assert(!context);
     fault_injection_context ctx;
     context = &ctx;
-    for (;;)
-    {
-        try
-        {
+    for (;;) {
+        try {
             f();
         }
-        catch (...)
-        {
+        catch (...) {
             fault_injection_disable dg;
             dump_state();
             ctx.skip_ranges.resize(ctx.error_index);
@@ -124,56 +110,48 @@ void faulty_run(std::function<void ()> const& f)
 }
 
 fault_injection_disable::fault_injection_disable()
-        : was_disabled(disabled)
-{
+        : was_disabled(disabled) {
     disabled = true;
 }
 
-fault_injection_disable::~fault_injection_disable()
-{
+fault_injection_disable::~fault_injection_disable() {
     disabled = was_disabled;
 }
 
-void* operator new(std::size_t count)
-{
+void *operator new(std::size_t count) {
     if (should_inject_fault())
         throw std::bad_alloc();
 
-    void* ptr = malloc(count);
+    void *ptr = malloc(count);
     if (!ptr)
         throw std::bad_alloc();
 
     return ptr;
 }
 
-void* operator new[](std::size_t count)
-{
+void *operator new[](std::size_t count) {
     if (should_inject_fault())
         throw std::bad_alloc();
 
-    void* ptr = malloc(count);
+    void *ptr = malloc(count);
     if (!ptr)
         throw std::bad_alloc();
 
     return ptr;
 }
 
-void operator delete(void* ptr) noexcept
-{
+void operator delete(void *ptr) noexcept {
     free(ptr);
 }
 
-void operator delete[](void* ptr) noexcept
-{
+void operator delete[](void *ptr) noexcept {
     free(ptr);
 }
 
-void operator delete(void* ptr, std::size_t) noexcept
-{
+void operator delete(void *ptr, std::size_t) noexcept {
     free(ptr);
 }
 
-void operator delete[](void* ptr, std::size_t) noexcept
-{
+void operator delete[](void *ptr, std::size_t) noexcept {
     free(ptr);
 }
