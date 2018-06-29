@@ -5,9 +5,11 @@ project(circular-buffer)
 add_library(counted counted.h counted.cpp fault_injection.h fault_injection.cpp)
 
 add_executable(std
+        circular_buffer.h
         std.cpp)
 
 add_executable(circular_buffer_testing
+        circular_buffer.h
         circular_buffer_testing.cpp)
 
 target_link_libraries(std gtest counted -lpthread)

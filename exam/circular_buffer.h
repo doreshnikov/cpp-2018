@@ -24,55 +24,57 @@ private:
 
         buffer_iterator() :
                 _where(nullptr),
+                _begin(0),
                 _capacity(0),
-                _range_index(0) {}
+                _position(0) {}
 
         template<class W, class = typename std::enable_if<std::is_const<V>::value || !std::is_const<W>::value>::type>
-        buffer_iterator(const buffer_iterator<W> &other) :
+        buffer_iterator(buffer_iterator<W> const &other) :
                 _where(other._where),
+                _begin(other._begin),
                 _capacity(other._capacity),
-                _range_index(other._range_index) {}
+                _position(other._position) {}
 
         template<class W, class = typename std::enable_if<std::is_const<V>::value || !std::is_const<W>::value>::type>
-        buffer_iterator<V> &operator=(const buffer_iterator<W> &other) {
+        buffer_iterator<V> &operator=(buffer_iterator<W> const &other) {
             _where = other._where;
+            _begin = other._begin;
             _capacity = other._capacity;
-            _range_index = other._range_index;
+            _position = other._position;
             return *this;
         }
 
         template<class W>
-        // int to ptrdiff_t
-        int operator-(const buffer_iterator<W> &other) const {
-            if (_where != other._where) {
-                throw std::runtime_error("Subtraction of different object iterators");
+        ptrdiff_t operator-(buffer_iterator<W> const &other) const {
+            if (!same(other)) {
+                throw std::runtime_error("Subtraction of different object or invalid iterators");
             }
-            return static_cast<int>(_range_index) - static_cast<int>(other._range_index);
+            return static_cast<ptrdiff_t>(_position) - static_cast<ptrdiff_t>(other._position);
         }
 
-        buffer_iterator<V> operator-(int index) const {
+        buffer_iterator<V> operator-(ptrdiff_t index) const {
             if (index < 0) {
                 return *this + (-index);
             }
-            return buffer_iterator(_where, _capacity, (_range_index - index + _capacity) % _capacity);
+            return buffer_iterator(_where, _begin, _capacity, (_position - index + _capacity) % _capacity);
         }
 
-        buffer_iterator<V> &operator-=(int index) {
+        buffer_iterator<V> &operator-=(ptrdiff_t index) {
             return *this = *this - index;
         }
 
-        buffer_iterator<V> operator+(int index) const {
+        buffer_iterator<V> operator+(ptrdiff_t index) const {
             if (index < 0) {
                 return *this - (-index);
             }
-            return buffer_iterator(_where, _capacity, (_range_index + index) % _capacity);
+            return buffer_iterator(_where, _begin, _capacity, (_position + index) % _capacity);
         }
 
-        buffer_iterator<V> &operator+=(int index) {
+        buffer_iterator<V> &operator+=(ptrdiff_t index) {
             return *this = *this + index;
         }
 
-        buffer_iterator<V> operator[](size_t index) const {
+        buffer_iterator<V> operator[](ptrdiff_t index) const {
             return *(this + index);
         }
 
@@ -98,58 +100,65 @@ private:
 
         template<class W>
         bool operator==(buffer_iterator<W> const &other) const {
-            return _where == other._where && _range_index == other._range_index;
+            return same(other) && _position == other._position;
         }
 
         template<class W>
         bool operator!=(buffer_iterator<W> const &other) const {
-            return _where == other._where && _range_index != other._range_index;
+            return same(other) && _position != other._position;
         }
 
         template<class W>
-        // tut govno
         bool operator<(buffer_iterator<W> const &other) const {
-            return _where == other._where && _range_index < other._range_index;
+            return same(other) && _position < other._position;
         }
 
         template<class W>
         bool operator<=(buffer_iterator<W> const &other) const {
-            return _where == other._where && _range_index <= other._range_index;
+            return same(other) && _position <= other._position;
         }
 
         template<class W>
         bool operator>(buffer_iterator<W> const &other) const {
-            return _where == other._where && _range_index > other._range_index;
+            return same(other) && _position > other._position;
         }
 
         template<class W>
         bool operator>=(buffer_iterator<W> const &other) const {
-            return _where == other._where && _range_index >= other._range_index;
+            return same(other) && _position >= other._position;
         }
 
         V &operator*() const {
-            return _where[_range_index];
+            return _where[(_begin + _position) % _capacity];
         }
 
         V *operator->() const {
-            return _where + _range_index;
+            return _where + (_begin + _position) % _capacity;
         }
 
     private:
 
+        template<class W>
+        bool same(buffer_iterator<W> const &other) const {
+            return _where == other._where && _begin == other._begin;
+        }
+
         buffer_iterator(circular_buffer<T> const &obj, size_t index) :
                 _where(obj._data),
+                _begin(obj.begin_pos()),
                 _capacity(obj._capacity),
-                _range_index(index) {};
+                _position(index) {};
 
-        buffer_iterator(V *where, size_t capacity, size_t range_index) :
+        buffer_iterator(V *where, size_t begin, size_t capacity, size_t position) :
                 _where(where),
+                _begin(begin),
                 _capacity(capacity),
-                _range_index(range_index) {};
+                _position(position) {};
 
         V *_where;
+        size_t _begin;
         size_t _capacity;
-        size_t _range_index;
+        size_t _position;
 
     };
 
@@ -196,7 +205,9 @@ public:
     }
 
     circular_buffer(circular_buffer<T> const &other) : circular_buffer(other._size) {
-        std::copy(other.begin(), other.end(), begin());
+        for (T const &value : other) {
+            push_back(value);
+        }
     }
 
     circular_buffer<T> &operator=(circular_buffer<T> const &other) {
@@ -465,12 +476,12 @@ private:
 
     template<class V>
     buffer_iterator<V> at(size_t index) const {
-        return buffer_iterator<V>(*this, (begin_pos() + index) % _capacity);
+        return buffer_iterator<V>(*this, index);
     }
 
     template<class V>
     size_t index_of(buffer_iterator<V> const &pos) const {
-        return (pos._range_index + _capacity - begin_pos()) % _capacity;
+        return pos._position;
     }
 
     const static size_t
