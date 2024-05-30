@@ -1,7 +1,3 @@
-//
-// Created by isuca on 23-Mar-18.
-//
-
 #ifndef BIG_INTEGER_H
 #define BIG_INTEGER_H
 
