@@ -1,7 +1,3 @@
-//
-// Created by amathael on 16.06.18.
-//
-
 #ifndef CPP_STORAGE_H
 #define CPP_STORAGE_H
 
