@@ -1,7 +1,3 @@
-//
-// Created by amathael on 02.06.18.
-//
-
 #ifndef CPP_DIGIT_TYPES_H
 #define CPP_DIGIT_TYPES_H
 
