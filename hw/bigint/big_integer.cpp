@@ -1,7 +1,3 @@
-//
-// Created by isuca on 23-Mar-18
-//
-
 #include "big_integer.h"
 #include <cmath>
 #include <algorithm>
