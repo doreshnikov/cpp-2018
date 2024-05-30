@@ -1,7 +1,3 @@
-//
-// Created by amathael on 16.06.18.
-//
-
 #include <algorithm>
 #include <cstring>
 #include "shared_vector.h"
